@@ -1,5 +1,5 @@
 # LeetCode 2353 - Design a Food Rating System
-# Author: Your Name - Student ID
+# Author: wilson muriithi
 
 import heapq
 
@@ -14,17 +14,3 @@ class FoodRatings:
             if c not in self.cuisine_heap:
                 self.cuisine_heap[c] = []
             heapq.heappush(self.cuisine_heap[c], (-r, f))
-
-    def changeRating(self, food: str, newRating: int) -> None:
-        cuisine = self.food_to_cuisine[food]
-        self.food_to_rating[food] = newRating
-        heapq.heappush(self.cuisine_heap[cuisine], (-newRating, food))
-
-    def highestRated(self, cuisine: str) -> str:
-        heap = self.cuisine_heap[cuisine]
-        while heap:
-            neg_r, food = heap[0]
-            if -neg_r == self.food_to_rating[food]:
-                return food
-            heapq.heappop(heap)
-        return ""
